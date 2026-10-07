@@ -77,7 +77,7 @@ export function Navbar() {
             <Link href="/" className="hover:text-white flex items-center gap-1">
               Beneficios <span className="bg-brand-red text-white text-[9px] font-bold px-1 rounded-sm uppercase tracking-wider">Nuevo</span>
             </Link>
-            <Link href="/" className="hover:text-white">Ayuda</Link>
+            <Link href="/ayuda" className="hover:text-white">Ayuda</Link>
           </div>
           
           {/* Menú de Usuario Dinámico y Carrito */}

@@ -7,8 +7,9 @@ import { Chatbot } from "@/components/Chatbot";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Distribuidora Rivadavia | Mayorista y Minorista",
-  description: "Venta mayorista y minorista de productos de librería y regalería en Mendoza y Cuyo.",
+  title: "Distribuidora Rivadavia | Mayorista de Librería y Regalería",
+  description: "Proveedor mayorista de artículos de librería, regalería y oficina en Mendoza. Envíos a San Juan, San Luis y Córdoba. Productos para revender con excelentes márgenes.",
+  keywords: "Librería por mayor, Artículos de librería por mayor, Regalería por mayor, Bazar por mayor, Distribuidora mayorista en Mendoza, Productos para revender, Proveedor de artículos de librería, Útiles escolares por mayor",
 };
 
 export default function RootLayout({
