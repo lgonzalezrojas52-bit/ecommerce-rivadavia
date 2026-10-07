@@ -2,9 +2,20 @@ import { mockProducts } from "@/data/mockProducts";
 import { ProductCard } from "@/components/ProductCard";
 import { AuthToggle } from "@/components/AuthToggle";
 import { BannerSlider } from "@/components/BannerSlider";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, BookOpen, PenTool, Briefcase, Gift, ShoppingBag, Palette, FileText, Monitor } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+
+const categorias = [
+  { id: 1, name: "Útiles Escolares", icon: BookOpen },
+  { id: 2, name: "Escritura y Trazado", icon: PenTool },
+  { id: 3, name: "Insumos de Oficina", icon: Briefcase },
+  { id: 4, name: "Regalería y Bazar", icon: Gift },
+  { id: 5, name: "Mochilas y Bolsos", icon: ShoppingBag },
+  { id: 6, name: "Arte y Diseño", icon: Palette },
+  { id: 7, name: "Papelería y Cuadernos", icon: FileText },
+  { id: 8, name: "Tecnología y Accesorios", icon: Monitor },
+];
 
 export default function Home() {
   // Dividimos los productos en dos filas para poner los banners en el medio (Estilo ML)
@@ -83,13 +94,37 @@ export default function Home() {
         <div className="flex items-center justify-between mb-4 mt-8">
           <h2 className="text-xl font-medium text-gray-600">Recomendaciones para tu comercio</h2>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
           {productsRow2.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
+        </div>
+
+        {/* Sección de Categorías (Estilo ML) */}
+        <div className="bg-white rounded shadow-sm p-6 mb-8 border border-gray-100">
+          <div className="flex items-baseline gap-4 mb-6">
+            <h2 className="text-2xl font-medium text-gray-800">Categorías</h2>
+            <Link href="/" className="text-sm text-brand-blue hover:text-blue-700">Mostrar todas las categorías</Link>
+          </div>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {categorias.map((cat) => (
+              <Link key={cat.id} href="/" className="flex items-center bg-white border border-gray-100 rounded hover:shadow-md transition-shadow group overflow-hidden">
+                <div className="w-1/3 bg-gray-50 flex items-center justify-center p-4 border-r border-gray-100">
+                  <cat.icon className="w-8 h-8 text-gray-400 group-hover:text-brand-blue transition-colors" strokeWidth={1.5} />
+                </div>
+                <div className="w-2/3 p-4">
+                  <span className="text-sm font-medium text-gray-700 group-hover:text-brand-blue transition-colors leading-tight block">
+                    {cat.name}
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
 
       </div>
     </div>
   );
 }
+
