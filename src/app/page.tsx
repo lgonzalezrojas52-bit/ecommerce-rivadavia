@@ -21,10 +21,10 @@ export default function Home() {
         
         {/* Barra de Filtros (Tipo de cliente) */}
         <div className="bg-white rounded shadow-sm mb-6 p-3 flex flex-col sm:flex-row items-center justify-between gap-4 border border-gray-100">
-          <div className="flex items-center gap-2 text-sm text-gray-500 overflow-x-auto w-full sm:w-auto">
-            <Link href="/" className="hover:text-brand-blue whitespace-nowrap">Inicio</Link>
-            <ChevronRight className="w-4 h-4" />
-            <span className="text-gray-900 font-medium whitespace-nowrap">Catálogo General</span>
+          <div className="flex items-center gap-3 text-sm overflow-x-auto w-full sm:w-auto">
+            <span className="text-gray-900 font-bold whitespace-nowrap">Catálogo General</span>
+            <span className="text-gray-300 hidden sm:inline">|</span>
+            <span className="text-gray-500 whitespace-nowrap hidden sm:inline">{mockProducts.length} productos disponibles</span>
           </div>
           
           <div className="w-full sm:w-auto">
