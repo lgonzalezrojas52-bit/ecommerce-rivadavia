@@ -13,7 +13,7 @@ export function ProductCard({ product }: ProductCardProps) {
   const price = isWholesale ? product.wholesalePrice : product.price;
 
   return (
-    <div className="bg-white rounded border border-gray-200 overflow-hidden hover:shadow-md transition-shadow flex flex-col h-full">
+    <div className="bg-white rounded border border-gray-200 overflow-hidden hover:shadow-md transition-shadow flex flex-col mb-4">
       <div className="relative h-48 w-full bg-white border-b border-gray-100 p-2">
         <Image 
           src={product.imageUrl} 

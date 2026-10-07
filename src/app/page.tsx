@@ -47,9 +47,11 @@ export default function Home() {
         <div className="flex items-center justify-between mb-4 mt-2">
           <h2 className="text-xl font-medium text-gray-600">Basado en tus últimas visitas</h2>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="columns-2 md:columns-4 gap-4">
           {productsRow1.map((product) => (
-            <ProductCard key={product.id} product={product} />
+            <div key={product.id} className="break-inside-avoid">
+              <ProductCard product={product} />
+            </div>
           ))}
         </div>
 
@@ -94,9 +96,11 @@ export default function Home() {
         <div className="flex items-center justify-between mb-4 mt-8">
           <h2 className="text-xl font-medium text-gray-600">Recomendaciones para tu comercio</h2>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+        <div className="columns-2 md:columns-4 gap-4 mb-10">
           {productsRow2.map((product) => (
-            <ProductCard key={product.id} product={product} />
+            <div key={product.id} className="break-inside-avoid">
+              <ProductCard product={product} />
+            </div>
           ))}
         </div>
 
