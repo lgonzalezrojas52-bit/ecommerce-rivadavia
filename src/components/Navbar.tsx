@@ -39,22 +39,31 @@ export function Navbar() {
             </button>
           </div>
           
-          {/* Promo Lateral (Ej. Beneficio Mayorista) */}
-          <div className="hidden lg:flex flex-shrink-0 items-center justify-center bg-white rounded-full px-4 py-1.5 shadow-sm h-10">
-            <span className="text-brand-red font-bold text-sm tracking-tight">+ Cuenta Mayorista</span>
-          </div>
+          {/* Promo Lateral Dinámica */}
+          {!isWholesale ? (
+            <Link href="/" className="hidden lg:flex flex-shrink-0 items-center justify-center bg-white rounded-full px-4 py-1.5 shadow-sm h-10 hover:bg-gray-50">
+              <span className="text-brand-red font-bold text-sm tracking-tight">+ Cuenta Mayorista</span>
+            </Link>
+          ) : (
+            <div className="hidden lg:flex flex-shrink-0 items-center justify-center bg-white/20 rounded-full px-4 py-1.5 h-10 border border-white/30">
+              <span className="text-white font-bold text-sm tracking-tight flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-green-400"></span>
+                Comercio Verificado
+              </span>
+            </div>
+          )}
 
         </div>
 
         {/* Fila Inferior: Ubicación + Categorías + Menú Usuario */}
         <div className="flex items-center justify-between">
           
-          {/* Ubicación */}
+          {/* Ubicación Dinámica */}
           <div className="flex items-center gap-1.5 text-white/90 hover:text-white hover:bg-white/10 p-1.5 -ml-1.5 rounded cursor-pointer transition-colors">
             <MapPin className="w-6 h-6 opacity-80" />
             <div className="flex flex-col text-[11px] leading-[13px]">
-              <span className="opacity-70">Enviar a Diego</span>
-              <span className="font-medium text-sm">Córdoba 5000</span>
+              <span className="opacity-70">{isWholesale ? "Enviar a Diego" : "Ingresá tu"}</span>
+              <span className="font-medium text-sm">{isWholesale ? "Córdoba 5000" : "ubicación"}</span>
             </div>
           </div>
           
@@ -71,15 +80,24 @@ export function Navbar() {
             <Link href="/" className="hover:text-white">Ayuda</Link>
           </div>
           
-          {/* Menú de Usuario y Carrito */}
+          {/* Menú de Usuario Dinámico y Carrito */}
           <div className="flex items-center gap-5 text-sm text-white/90 ml-auto">
-            <Link href="/mayorista" className="hidden sm:flex items-center gap-1 hover:text-white font-medium">
-              <div className="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center mr-1">
-                <span className="text-[10px] font-bold">DM</span>
-              </div>
-              Diego <ChevronDown className="w-4 h-4 opacity-70" />
-            </Link>
-            <Link href="/" className="hidden sm:block hover:text-white">Mis compras</Link>
+            {isWholesale ? (
+              <>
+                <Link href="/" className="hidden sm:flex items-center gap-1 hover:text-white font-medium">
+                  <div className="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center mr-1">
+                    <span className="text-[10px] font-bold">DM</span>
+                  </div>
+                  Diego <ChevronDown className="w-4 h-4 opacity-70" />
+                </Link>
+                <Link href="/" className="hidden sm:block hover:text-white">Mis compras</Link>
+              </>
+            ) : (
+              <>
+                <Link href="/" className="hidden sm:block hover:text-white font-medium">Ingresar</Link>
+                <Link href="/" className="hidden sm:block hover:text-white font-medium">Crear cuenta</Link>
+              </>
+            )}
             
             <button className="hover:text-white">
               <Bell className="w-5 h-5" />
