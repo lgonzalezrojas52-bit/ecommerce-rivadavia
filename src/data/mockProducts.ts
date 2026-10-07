@@ -81,7 +81,7 @@ export const mockProducts: Product[] = [
     price: 2800,
     wholesalePrice: 1900,
     category: "libreria",
-    imageUrl: "https://images.unsplash.com/photo-1580569214296-5cb2afebaa3a?q=80&w=600&auto=format&fit=crop",
+    imageUrl: "/img/resaltadores.png",
     stock: 400,
   },
   {
@@ -91,7 +91,7 @@ export const mockProducts: Product[] = [
     price: 7500,
     wholesalePrice: 5100,
     category: "regaleria",
-    imageUrl: "https://images.unsplash.com/photo-1595225476474-87563907a212?q=80&w=600&auto=format&fit=crop",
+    imageUrl: "/img/organizador.png",
     stock: 60,
   }
 ];
