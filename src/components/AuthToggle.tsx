@@ -1,49 +1,41 @@
 "use client";
 
 import { useCartStore } from "@/store/useCartStore";
-import { Store, User } from "lucide-react";
 
 export function AuthToggle() {
   const { isWholesale, setIsWholesale } = useCartStore();
 
   return (
-    <div className="bg-white/10 backdrop-blur-md p-5 rounded-2xl border border-white/20 shadow-lg inline-block w-full max-w-md">
-      <p className="text-sm font-semibold text-blue-50 mb-3 uppercase tracking-wider">Modo de Visualización</p>
+    <div className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm inline-block w-full max-w-sm">
+      <p className="text-sm font-semibold text-gray-700 mb-3">Lista de Precios</p>
       
-      <div className="flex bg-brand-blue/50 p-1 rounded-xl border border-brand-blue/30 shadow-inner relative z-10">
+      <div className="flex bg-gray-100 p-1 rounded-md border border-gray-200">
         <button
           onClick={() => setIsWholesale(false)}
-          className={`relative z-20 flex-1 flex items-center justify-center gap-2 px-4 py-3 text-sm font-bold rounded-lg transition-all duration-300 ${
+          className={`flex-1 text-center py-2 text-sm font-medium rounded transition-colors ${
             !isWholesale 
-              ? "bg-white text-brand-blue shadow-md scale-100" 
-              : "text-blue-100 hover:text-white hover:bg-white/5 scale-95"
+              ? "bg-white text-gray-900 shadow-sm border border-gray-200" 
+              : "text-gray-500 hover:text-gray-700"
           }`}
         >
-          <User className="w-4 h-4" />
-          Minorista
+          Consumidor Final
         </button>
         <button
           onClick={() => setIsWholesale(true)}
-          className={`relative z-20 flex-1 flex items-center justify-center gap-2 px-4 py-3 text-sm font-bold rounded-lg transition-all duration-300 ${
+          className={`flex-1 text-center py-2 text-sm font-medium rounded transition-colors ${
             isWholesale 
-              ? "bg-brand-red text-white shadow-md scale-100" 
-              : "text-blue-100 hover:text-white hover:bg-white/5 scale-95"
+              ? "bg-brand-blue text-white shadow-sm" 
+              : "text-gray-500 hover:text-gray-700"
           }`}
         >
-          <Store className="w-4 h-4" />
-          Mayorista
+          Comercio / Mayorista
         </button>
       </div>
       
-      <div className="mt-4 flex items-start gap-3 bg-brand-blue/30 p-3 rounded-lg border border-brand-blue/20">
-        <div className="mt-0.5">
-          {isWholesale ? <Store className="w-4 h-4 text-brand-red" /> : <User className="w-4 h-4 text-blue-200" />}
-        </div>
-        <p className="text-xs text-blue-50 leading-relaxed">
-          {isWholesale 
-            ? "Estás viendo el catálogo B2B con precios y descuentos exclusivos para comercios." 
-            : "Estás viendo el catálogo estándar para consumidor final (B2C)."}
-        </p>
+      <div className="mt-3 text-xs text-gray-500">
+        {isWholesale 
+          ? "Mostrando catálogo B2B. Compra mínima sugerida: $50.000." 
+          : "Mostrando precios al público general (B2C)."}
       </div>
     </div>
   );

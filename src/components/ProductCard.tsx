@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { Product } from "@/data/mockProducts";
 import { useCartStore } from "@/store/useCartStore";
-import { ShoppingBag } from "lucide-react";
 
 interface ProductCardProps {
   product: Product;
@@ -14,52 +13,42 @@ export function ProductCard({ product }: ProductCardProps) {
   const price = isWholesale ? product.wholesalePrice : product.price;
 
   return (
-    <div className="group bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col h-full transform hover:-translate-y-1">
-      <div className="relative h-56 w-full bg-gray-50 overflow-hidden">
+    <div className="bg-white rounded border border-gray-200 overflow-hidden hover:shadow-md transition-shadow flex flex-col h-full">
+      <div className="relative h-48 w-full bg-white border-b border-gray-100 p-2">
         <Image 
           src={product.imageUrl} 
           alt={product.name}
-          width={400}
+          width={300}
           height={300}
-          className="w-full h-full object-cover mix-blend-multiply group-hover:scale-105 transition-transform duration-500"
+          className="w-full h-full object-contain"
         />
         {product.isNew && (
-          <span className="absolute top-3 left-3 bg-brand-red text-white text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full shadow-sm">
+          <span className="absolute top-2 left-2 bg-brand-blue text-white text-[10px] font-bold uppercase px-2 py-0.5 rounded">
             Nuevo
           </span>
         )}
       </div>
       
-      <div className="p-5 flex flex-col flex-grow">
-        <div className="text-[11px] text-brand-blue/70 uppercase font-bold tracking-widest mb-1.5">
-          {product.category}
-        </div>
-        <h3 className="font-bold text-gray-900 leading-snug mb-2 line-clamp-2 text-lg">
+      <div className="p-4 flex flex-col flex-grow">
+        <h3 className="text-sm text-gray-800 leading-tight mb-2 line-clamp-2">
           {product.name}
         </h3>
         
-        <p className="text-sm text-gray-500 mb-4 line-clamp-2 font-light">
-          {product.description}
-        </p>
-        
-        <div className="mt-auto pt-4 border-t border-gray-100 flex items-center justify-between">
-          <div className="flex flex-col">
-            {isWholesale && (
-              <span className="text-xs text-gray-400 line-through font-medium">
-                ${product.price.toLocaleString("es-AR")}
-              </span>
-            )}
-            <span className="text-2xl font-extrabold text-brand-blue tracking-tight">
-              ${price.toLocaleString("es-AR")}
-            </span>
+        <div className="mt-auto pt-2">
+          {isWholesale && (
+            <div className="text-xs text-gray-400 line-through">
+              ${product.price.toLocaleString("es-AR")}
+            </div>
+          )}
+          <div className="text-xl font-medium text-gray-900">
+            $ {price.toLocaleString("es-AR")}
           </div>
           
           <button 
             onClick={() => addItem(product, 1)}
-            className="flex items-center justify-center bg-gray-50 text-brand-blue hover:bg-brand-blue hover:text-white p-3 rounded-xl transition-all duration-200 shadow-sm border border-gray-200 hover:border-transparent group-hover:bg-brand-blue group-hover:text-white"
-            title="Agregar al carrito"
+            className="w-full mt-3 bg-blue-50 text-brand-blue hover:bg-brand-blue hover:text-white border border-blue-100 py-2 text-sm font-medium rounded transition-colors"
           >
-            <ShoppingBag className="w-5 h-5" />
+            Agregar
           </button>
         </div>
       </div>

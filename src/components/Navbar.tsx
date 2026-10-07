@@ -10,57 +10,74 @@ export function Navbar() {
   const totalItems = items.reduce((acc, item) => acc + item.quantity, 0);
 
   return (
-    <nav className="bg-white/90 backdrop-blur-md sticky top-0 z-50 border-b border-gray-100 shadow-sm">
+    <nav className="bg-white sticky top-0 z-50 border-b border-gray-200 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <div className="flex items-center">
-            <Link href="/" className="flex items-center gap-3 group">
-              <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-brand-red shadow-sm group-hover:shadow-md transition-shadow">
-                <Image src="/logo.png" alt="Distribuidora Rivadavia" fill className="object-contain bg-white" />
+            <Link href="/" className="flex items-center gap-3">
+              <div className="w-12 h-12 relative">
+                <Image src="/logo.png" alt="Distribuidora Rivadavia" fill className="object-contain" />
               </div>
-              <span className="font-extrabold text-xl tracking-tight text-brand-blue hidden sm:block group-hover:text-brand-red transition-colors">
-                RIVADAVIA
-              </span>
+              <div className="hidden sm:flex flex-col">
+                <span className="font-bold text-lg tracking-tight text-brand-blue leading-none">
+                  Distribuidora Rivadavia
+                </span>
+                <span className="text-xs text-gray-500 uppercase tracking-widest mt-1">Librería & Regalería</span>
+              </div>
             </Link>
           </div>
           
-          {/* Desktop Nav */}
-          <div className="hidden md:flex items-center space-x-8">
-            <Link href="/" className="text-gray-600 hover:text-brand-red font-medium transition-colors">Catálogo</Link>
-            <Link href="/novedades" className="text-gray-600 hover:text-brand-red font-medium transition-colors">Novedades</Link>
-            
-            <div className="h-6 w-px bg-gray-200"></div>
-            
-            <div className="flex items-center bg-gray-100 rounded-full px-4 py-2">
-              <Search className="w-4 h-4 text-gray-400 mr-2" />
+          {/* Search (Desktop) */}
+          <div className="hidden md:flex flex-1 max-w-lg mx-8">
+            <div className="w-full flex items-center bg-gray-100 rounded-md px-3 py-2 border border-gray-200 focus-within:border-brand-blue focus-within:bg-white transition-colors">
+              <Search className="w-5 h-5 text-gray-400 mr-2 flex-shrink-0" />
               <input 
                 type="text" 
-                placeholder="Buscar productos..." 
-                className="bg-transparent border-none outline-none text-sm w-48 focus:w-64 transition-all duration-300"
+                placeholder="Buscar artículos..." 
+                className="bg-transparent border-none outline-none w-full text-sm text-gray-700 placeholder-gray-400"
               />
             </div>
           </div>
           
           {/* Actions */}
-          <div className="flex items-center space-x-4">
-            <Link href="/mayorista" className="hidden sm:flex items-center gap-2 text-sm font-semibold text-brand-blue bg-blue-50 hover:bg-blue-100 px-4 py-2 rounded-full transition-colors border border-blue-100">
-              <User className="w-4 h-4" />
-              <span>Acceso Mayorista</span>
+          <div className="flex items-center space-x-6">
+            <div className="hidden md:flex items-center space-x-6">
+              <Link href="/" className="text-sm font-medium text-gray-700 hover:text-brand-blue">Catálogo</Link>
+              <Link href="/novedades" className="text-sm font-medium text-gray-700 hover:text-brand-blue">Novedades</Link>
+            </div>
+            
+            <div className="h-6 w-px bg-gray-300 hidden md:block"></div>
+
+            <Link href="/mayorista" className="hidden sm:flex items-center gap-2 text-sm font-medium text-gray-700 hover:text-brand-blue">
+              <User className="w-5 h-5" />
+              <span>Ingresar</span>
             </Link>
 
-            <Link href="/carrito" className="relative p-2 text-gray-700 hover:text-brand-red transition-colors">
+            <Link href="/carrito" className="relative p-1 text-gray-700 hover:text-brand-blue">
               <ShoppingCart className="h-6 w-6" />
               {totalItems > 0 && (
-                <span className="absolute top-0 right-0 inline-flex items-center justify-center min-w-[20px] h-5 px-1 text-[10px] font-bold text-white transform translate-x-1/4 -translate-y-1/4 bg-brand-red rounded-full shadow-sm">
+                <span className="absolute -top-1 -right-1 inline-flex items-center justify-center min-w-[20px] h-5 px-1 text-xs font-bold text-white bg-brand-red rounded-full">
                   {totalItems}
                 </span>
               )}
             </Link>
             
-            <button className="md:hidden p-2 text-gray-700 hover:text-brand-red">
+            <button className="md:hidden p-1 text-gray-700">
               <Menu className="h-6 w-6" />
             </button>
+          </div>
+        </div>
+        
+        {/* Search (Mobile) */}
+        <div className="md:hidden pb-4">
+          <div className="flex items-center bg-gray-100 rounded-md px-3 py-2 border border-gray-200">
+            <Search className="w-5 h-5 text-gray-400 mr-2 flex-shrink-0" />
+            <input 
+              type="text" 
+              placeholder="Buscar artículos..." 
+              className="bg-transparent border-none outline-none w-full text-sm text-gray-700"
+            />
           </div>
         </div>
       </div>
