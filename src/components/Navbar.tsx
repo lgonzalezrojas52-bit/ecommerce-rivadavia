@@ -6,7 +6,7 @@ import { ShoppingCart, Search, MapPin, ChevronDown, Bell } from "lucide-react";
 import { useCartStore } from "@/store/useCartStore";
 
 export function Navbar() {
-  const items = useCartStore((state) => state.items);
+  const { items, isWholesale } = useCartStore();
   const totalItems = items.reduce((acc, item) => acc + item.quantity, 0);
 
   return (
