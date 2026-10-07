@@ -57,7 +57,7 @@ export function Chatbot() {
       {/* Botón Flotante */}
       <button
         onClick={() => setIsOpen(true)}
-        className={`fixed bottom-6 right-6 w-14 h-14 bg-brand-blue text-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 hover:bg-blue-900 transition-all z-50 ${
+        className={`fixed bottom-4 right-4 sm:bottom-6 sm:right-6 w-14 h-14 bg-brand-blue text-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 hover:bg-blue-900 transition-all z-50 ${
           isOpen ? "scale-0 opacity-0" : "scale-100 opacity-100"
         }`}
         aria-label="Abrir chat de soporte"
@@ -69,7 +69,7 @@ export function Chatbot() {
 
       {/* Ventana de Chat */}
       <div 
-        className={`fixed bottom-6 right-6 w-[340px] h-[480px] bg-white rounded-xl shadow-2xl flex flex-col border border-gray-200 z-50 transition-all duration-300 transform origin-bottom-right ${
+        className={`fixed bottom-4 right-4 sm:bottom-6 sm:right-6 w-[calc(100vw-2rem)] sm:w-[340px] max-w-[340px] h-[450px] sm:h-[480px] bg-white rounded-xl shadow-2xl flex flex-col border border-gray-200 z-50 transition-all duration-300 transform origin-bottom-right ${
           isOpen ? "scale-100 opacity-100" : "scale-0 opacity-0 pointer-events-none"
         }`}
       >

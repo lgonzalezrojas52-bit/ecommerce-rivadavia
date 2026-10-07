@@ -14,7 +14,7 @@ export function Navbar() {
       <div className="max-w-[1200px] mx-auto px-4">
         
         {/* Fila Superior: Logo + Buscador + Promo */}
-        <div className="flex items-center gap-8 mb-3">
+        <div className="flex items-center gap-2 sm:gap-4 md:gap-8 mb-3">
           
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 flex-shrink-0">
