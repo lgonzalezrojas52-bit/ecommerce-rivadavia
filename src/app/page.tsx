@@ -16,8 +16,8 @@ export default function Home() {
           </p>
           <AuthToggle />
         </div>
-        <div className="hidden md:block w-32 h-32 bg-white rounded-full border-4 border-brand-red flex-shrink-0 flex items-center justify-center shadow-xl">
-          <span className="text-brand-blue font-black text-5xl">DR</span>
+        <div className="hidden md:block w-40 h-40 flex-shrink-0 shadow-xl rounded-full overflow-hidden border-4 border-white">
+          <img src="/logo.png" alt="Distribuidora Rivadavia" className="w-full h-full object-contain bg-white" />
         </div>
       </div>
 

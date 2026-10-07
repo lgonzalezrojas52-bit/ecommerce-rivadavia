@@ -14,9 +14,7 @@ export function Navbar() {
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
             <Link href="/" className="flex items-center gap-2">
-              <div className="w-10 h-10 bg-white rounded-full border-2 border-brand-red flex items-center justify-center">
-                <span className="text-brand-blue font-bold text-xl leading-none">DR</span>
-              </div>
+              <img src="/logo.png" alt="Distribuidora Rivadavia Logo" className="w-10 h-10 object-contain rounded-full bg-white" />
               <span className="font-bold text-lg hidden sm:block">Distribuidora Rivadavia</span>
             </Link>
           </div>
