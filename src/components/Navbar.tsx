@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { ShoppingCart, Menu } from "lucide-react";
 import { useCartStore } from "@/store/useCartStore";
 
@@ -14,7 +15,7 @@ export function Navbar() {
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
             <Link href="/" className="flex items-center gap-2">
-              <img src="/logo.png" alt="Distribuidora Rivadavia Logo" className="w-10 h-10 object-contain rounded-full bg-white" />
+              <Image src="/logo.png" alt="Distribuidora Rivadavia Logo" width={40} height={40} className="object-contain rounded-full bg-white" />
               <span className="font-bold text-lg hidden sm:block">Distribuidora Rivadavia</span>
             </Link>
           </div>

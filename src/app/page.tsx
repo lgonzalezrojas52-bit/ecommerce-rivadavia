@@ -1,4 +1,5 @@
 import { mockProducts } from "@/data/mockProducts";
+import Image from "next/image";
 import { ProductCard } from "@/components/ProductCard";
 import { AuthToggle } from "@/components/AuthToggle"; // Lo crearemos ahora
 
@@ -17,7 +18,7 @@ export default function Home() {
           <AuthToggle />
         </div>
         <div className="hidden md:block w-40 h-40 flex-shrink-0 shadow-xl rounded-full overflow-hidden border-4 border-white">
-          <img src="/logo.png" alt="Distribuidora Rivadavia" className="w-full h-full object-contain bg-white" />
+          <Image src="/logo.png" alt="Distribuidora Rivadavia" width={160} height={160} className="object-contain bg-white" />
         </div>
       </div>
 

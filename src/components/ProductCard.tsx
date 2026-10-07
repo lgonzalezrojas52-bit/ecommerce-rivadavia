@@ -17,9 +17,11 @@ export function ProductCard({ product }: ProductCardProps) {
     <div className="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow">
       <div className="relative h-48 w-full bg-gray-100">
         {/* Usando una img normal por ahora para evitar configuración de dominios en Next/Image */}
-        <img 
+        <Image 
           src={product.imageUrl} 
           alt={product.name}
+          width={400}
+          height={300}
           className="w-full h-full object-cover"
         />
         {product.isNew && (
