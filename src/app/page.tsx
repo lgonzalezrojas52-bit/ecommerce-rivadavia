@@ -7,13 +7,15 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="bg-gray-50 pb-16">
+    <div className="pb-16 min-h-screen">
       {/* Carrusel de Banners */}
       <BannerSlider />
 
-      {/* Navegación y Filtros (Tipo de cliente) */}
-      <div className="bg-white border-b border-gray-200 shadow-sm sticky top-20 z-40">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      {/* Contenedor Principal Flotante (Se superpone al banner) */}
+      <div className="relative z-30 max-w-[1200px] mx-auto px-4 -mt-16 sm:-mt-24">
+        
+        {/* Barra de Filtros (Tipo de cliente) */}
+        <div className="bg-white rounded shadow-sm mb-6 p-3 flex flex-col sm:flex-row items-center justify-between gap-4 border border-gray-100">
           <div className="flex items-center gap-2 text-sm text-gray-500 overflow-x-auto w-full sm:w-auto">
             <Link href="/" className="hover:text-brand-blue whitespace-nowrap">Inicio</Link>
             <ChevronRight className="w-4 h-4" />
@@ -24,13 +26,11 @@ export default function Home() {
             <AuthToggle />
           </div>
         </div>
-      </div>
 
-      {/* Seccion de Catálogo */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="text-2xl font-bold text-gray-900">Productos Destacados</h2>
-          <span className="text-sm text-gray-500">{mockProducts.length} artículos</span>
+        {/* Seccion de Catálogo */}
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="text-2xl font-medium text-gray-600">Productos Destacados</h2>
+          <span className="text-sm text-gray-500 font-medium">{mockProducts.length} resultados</span>
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
