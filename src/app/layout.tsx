@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/Navbar";
+import { Chatbot } from "@/components/Chatbot";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,6 +23,10 @@ export default function RootLayout({
         <main className="flex-grow w-full">
           {children}
         </main>
+        
+        {/* Chatbot Flotante */}
+        <Chatbot />
+        
         <footer className="bg-white text-gray-600 py-10 mt-auto border-t border-gray-200 text-sm">
           <div className="max-w-[1200px] mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="flex items-center gap-2">
