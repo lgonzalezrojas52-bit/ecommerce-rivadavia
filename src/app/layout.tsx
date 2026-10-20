@@ -3,7 +3,6 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 import { Chatbot } from "@/components/Chatbot";
-import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,6 +19,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
+      <head>
+        {/* Google tag (gtag.js) */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-XG9H05KK3K" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-XG9H05KK3K');
+            `,
+          }}
+        />
+      </head>
       <body className={`${inter.className} antialiased min-h-screen flex flex-col bg-[#ebebeb] text-gray-900`}>
         <Navbar />
         <main className="flex-grow w-full">
@@ -37,21 +50,6 @@ export default function RootLayout({
             <p>© {new Date().getFullYear()} Distribuidora Rivadavia. Todos los derechos reservados.</p>
           </div>
         </footer>
-
-        {/* Google Analytics (gtag.js) */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-XG9H05KK3K"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-
-            gtag('config', 'G-XG9H05KK3K');
-          `}
-        </Script>
       </body>
     </html>
   );
