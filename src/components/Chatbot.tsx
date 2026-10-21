@@ -1,12 +1,14 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { MessageCircle, X, Send, HelpCircle } from "lucide-react";
+import { MessageCircle, X, Send, HelpCircle, MessageSquare, ExternalLink } from "lucide-react";
 
 interface Message {
   id: number;
   text: string;
   sender: "user" | "bot";
+  showWhatsAppButton?: boolean;
+  whatsAppText?: string;
 }
 
 const FAQ_LIST = [
@@ -73,7 +75,13 @@ export function Chatbot() {
     setMessages(prev => [
       ...prev,
       { id: Date.now(), text: question, sender: "user" },
-      { id: Date.now() + 1, text: answer, sender: "bot" }
+      { 
+        id: Date.now() + 1, 
+        text: answer, 
+        sender: "bot",
+        showWhatsAppButton: true,
+        whatsAppText: "¿Dudas puntuales? Hablar por WhatsApp"
+      }
     ]);
   };
 
@@ -91,10 +99,28 @@ export function Chatbot() {
     // Buscar coincidencia en las FAQs
     setTimeout(() => {
       let botReply = "";
+      let showWhatsApp = false;
+      let btnText = "Hablar con un asesor por WhatsApp";
 
       // Saludos
       if (cleanMsg.includes("hola") || cleanMsg.includes("buen dia") || cleanMsg.includes("buenas")) {
         botReply = "¡Hola! ¿Cómo estás? ¿En qué puedo orientarte hoy? Podés consultarme sobre pedidos, envíos mayoristas o formas de pago.";
+      } 
+      // Petición directa de asesor humano o inconformidad
+      else if (
+        cleanMsg.includes("no me sirve") || 
+        cleanMsg.includes("no entendi") || 
+        cleanMsg.includes("no resolvio") || 
+        cleanMsg.includes("asesor") || 
+        cleanMsg.includes("humano") || 
+        cleanMsg.includes("persona") ||
+        cleanMsg.includes("contacto") ||
+        cleanMsg.includes("telefono") ||
+        cleanMsg.includes("hablar con alguien")
+      ) {
+        botReply = "¡Te entiendo! Te conecto directamente con nuestro equipo de ventas para que un asesor te atienda de inmediato por WhatsApp:";
+        showWhatsApp = true;
+        btnText = "Contactar asesor por WhatsApp";
       } else {
         // Buscar coincidencia por palabra clave
         const matchedFaq = FAQ_LIST.find(faq => 
@@ -106,12 +132,26 @@ export function Chatbot() {
 
         if (matchedFaq) {
           botReply = matchedFaq.a;
+          showWhatsApp = true;
+          btnText = "¿No resolvió tu duda? Hablar por WhatsApp";
         } else {
-          botReply = "Para consultas específicas o asesoramiento comercial directo, podés contactar a nuestro equipo por WhatsApp coordinando los artículos desde el carrito.";
+          // FALLBACK SI NO RECONOCE LA PREGUNTA
+          botReply = "No tengo una respuesta exacta para esa consulta. Para darte una solución rápida y personalizada, podés comunicarte directamente con nuestro equipo por WhatsApp:";
+          showWhatsApp = true;
+          btnText = "Consultar ahora por WhatsApp";
         }
       }
 
-      setMessages(prev => [...prev, { id: Date.now() + 1, text: botReply, sender: "bot" }]);
+      setMessages(prev => [
+        ...prev, 
+        { 
+          id: Date.now() + 1, 
+          text: botReply, 
+          sender: "bot",
+          showWhatsAppButton: showWhatsApp,
+          whatsAppText: btnText
+        }
+      ]);
     }, 450);
   };
 
@@ -166,7 +206,23 @@ export function Chatbot() {
                   : "bg-white text-gray-800 rounded-bl-none self-start border border-gray-200 shadow-sm leading-relaxed"
               }`}
             >
-              {msg.text}
+              <p>{msg.text}</p>
+
+              {/* Botón de Derivación a WhatsApp cuando no reconoce o para dudas no resueltas */}
+              {msg.sender === "bot" && msg.showWhatsAppButton && (
+                <div className="mt-2.5 pt-2 border-t border-gray-100">
+                  <a
+                    href="https://wa.me/5492610000000?text=Hola%20Distribuidora%20Rivadavia!%20Tengo%20una%20consulta%20sobre%20el%20cat%C3%A1logo%20mayorista."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-1.5 bg-[#25D366] hover:bg-[#128C7E] text-white text-xs font-semibold px-3 py-2 rounded-lg transition-colors shadow-2xs w-full text-center"
+                  >
+                    <MessageSquare className="w-3.5 h-3.5" />
+                    <span>{msg.whatsAppText || "Hablar por WhatsApp"}</span>
+                    <ExternalLink className="w-3 h-3 opacity-75" />
+                  </a>
+                </div>
+              )}
             </div>
           ))}
 

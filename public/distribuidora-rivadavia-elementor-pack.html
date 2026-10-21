@@ -612,7 +612,14 @@
       setTimeout(() => {
         const botDiv = document.createElement('div');
         botDiv.className = "bg-white text-gray-800 p-3 rounded-2xl rounded-bl-none self-start border border-gray-200 shadow-sm max-w-[85%] leading-relaxed";
-        botDiv.innerText = answer;
+        botDiv.innerHTML = `
+          <p>${answer}</p>
+          <div class="mt-2 pt-2 border-t border-gray-100">
+            <a href="https://wa.me/5492610000000?text=Hola%20Distribuidora%20Rivadavia!%20Tengo%20una%20consulta." target="_blank" class="inline-flex items-center justify-center gap-1.5 bg-[#25D366] text-white text-xs font-semibold px-3 py-1.5 rounded-lg hover:bg-[#128C7E] transition-colors w-full text-center">
+              <span>¿Dudas puntuales? Hablar por WhatsApp</span>
+            </a>
+          </div>
+        `;
         chatMessages.appendChild(botDiv);
         chatMessages.scrollTop = chatMessages.scrollHeight;
       }, 350);
@@ -671,19 +678,51 @@
 
       // Respuesta simulada
       setTimeout(() => {
-        let reply = "Para atención personalizada o coordinar tu pedido, podés comunicarte con nuestro equipo comercial por WhatsApp.";
+        let reply = "No tengo una respuesta exacta para esa consulta. Para darte una solución personalizada, podés comunicarte con nuestro equipo por WhatsApp:";
+        let btnText = "Consultar ahora por WhatsApp";
+        let showBtn = true;
+
         const low = val.toLowerCase();
         
-        const matched = FAQ_DATA.find(item => item.keywords.some(k => low.includes(k)));
-        if (matched) {
-          reply = matched.a;
+        if (
+          low.includes("no me sirve") || 
+          low.includes("no entendi") || 
+          low.includes("no resolvio") || 
+          low.includes("asesor") || 
+          low.includes("humano") || 
+          low.includes("contacto") || 
+          low.includes("telefono")
+        ) {
+          reply = "¡Te entiendo! Te derivo directamente con nuestro equipo de atención comercial por WhatsApp:";
+          btnText = "Contactar asesor por WhatsApp";
+          showBtn = true;
         } else if (low.includes("hola") || low.includes("buen dia") || low.includes("buenas")) {
           reply = "¡Hola! ¿Cómo estás? Podés consultarme sobre pedidos mayoristas, envíos o formas de pago.";
+          showBtn = false;
+        } else {
+          const matched = FAQ_DATA.find(item => item.keywords.some(k => low.includes(k)));
+          if (matched) {
+            reply = matched.a;
+            btnText = "¿No resolvió tu duda? Hablar por WhatsApp";
+            showBtn = true;
+          }
         }
 
         const botMsgDiv = document.createElement('div');
         botMsgDiv.className = "bg-white text-gray-800 p-3 rounded-2xl rounded-bl-none self-start border border-gray-200 shadow-sm max-w-[85%] leading-relaxed";
-        botMsgDiv.innerText = reply;
+        
+        let contentHtml = `<p>${reply}</p>`;
+        if (showBtn) {
+          contentHtml += `
+            <div class="mt-2 pt-2 border-t border-gray-100">
+              <a href="https://wa.me/5492610000000?text=Hola%20Distribuidora%20Rivadavia!%20Tengo%20una%20consulta." target="_blank" class="inline-flex items-center justify-center gap-1.5 bg-[#25D366] text-white text-xs font-semibold px-3 py-1.5 rounded-lg hover:bg-[#128C7E] transition-colors w-full text-center">
+                <span>${btnText}</span>
+              </a>
+            </div>
+          `;
+        }
+        
+        botMsgDiv.innerHTML = contentHtml;
         chatMessages.appendChild(botMsgDiv);
         chatMessages.scrollTop = chatMessages.scrollHeight;
       }, 400);
