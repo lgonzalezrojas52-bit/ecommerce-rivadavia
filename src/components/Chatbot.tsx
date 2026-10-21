@@ -48,7 +48,7 @@ const FAQ_LIST = [
   {
     q: "¿Dónde se encuentra Distribuidora Rivadavia?",
     keywords: ["donde", "dónde", "ubicacion", "ubicación", "deposito", "depósito", "direccion", "dirección", "sucursal", "local", "queda"],
-    a: "Nuestro depósito central y centro logístico está ubicado en Mendoza Capital, punto estratégico desde el cual abastecemos a toda la región de Cuyo."
+    a: "Nuestro depósito central y centro logístico está ubicado en Rivadavia, Mendoza, punto estratégico desde el cual abastecemos a comercios de toda la provincia y la región."
   }
 ];
 

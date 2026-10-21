@@ -57,7 +57,7 @@ const faqs = [
   {
     icon: Building,
     question: "¿Dónde se encuentra Distribuidora Rivadavia?",
-    answer: "Nuestro depósito central y centro de distribución mayorista se encuentra en Mendoza Capital, ubicación estratégica desde la cual abastecemos a comercios de toda la región."
+    answer: "Nuestro depósito central y centro de distribución mayorista se encuentra en Rivadavia, Mendoza, ubicación estratégica desde la cual abastecemos a comercios de toda la provincia y la región."
   }
 ];
 
